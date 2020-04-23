@@ -29,10 +29,10 @@ set cwd=%CD%
 
 if exist %clojure_root% (
     cd %clojure_root%
-    rem Update Clojure repo if it exists.
+    rem Update a local Clojure repo if it exists.
     git pull
 ) else (
-    rem Clone Clojure repo if it doesn't exist.
+    rem Clone a Clojure repo if it doesn't exist.
     git clone https://github.com/clojure/clojure.git %clojure_root%
     cd %clojure_root%
 )
