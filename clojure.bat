@@ -27,6 +27,7 @@ if not exist %rootdir%clojure.jar (
     echo No compiled Clojure on the system >&2
     echo Compile Clojure from scratch >&2
 
+    call %rootdir%clean.bat
     call %rootdir%build.bat
     cd %cwd%
 
