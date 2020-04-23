@@ -3,7 +3,7 @@ rem Clean script for Clojure on Windows
 rem Copyright (c) 2020 Michael Chen
 rem Licensed under MIT
 
-rem Place clojure.bat, build.bat and clean.bat at the root path of Clojure repo.
+rem Place clojure.bat, build.bat and clean.bat at the root path of a local Clojure repo.
 
 set rootdir=%~dp0
 
