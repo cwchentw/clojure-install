@@ -24,16 +24,18 @@ if "%prefix:~-1%" neq "\" (
 
 set clojure_root=%prefix%clojure\
 
-rem Clone Clojure repo if it doesn't exist.
-if not exist %clojure_root% (
-    git clone https://github.com/clojure/clojure.git %clojure_root%
-)
-
 rem Save current working directory.
 set cwd=%CD%
 
-rem Change working directory to the local path of Clojure.
-cd %clojure_root%
+if exist %clojure_root% (
+    cd %clojure_root%
+    rem Update Clojure repo if it exists.
+    git pull
+) else (
+    rem Clone Clojure repo if it doesn't exist.
+    git clone https://github.com/clojure/clojure.git %clojure_root%
+    cd %clojure_root%
+)
 
 rem Check whether PowerShell is available.
 powershell -Help >nul 2>&1 || (
