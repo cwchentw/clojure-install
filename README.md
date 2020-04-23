@@ -36,7 +36,7 @@ Run the script with parameter to install at a specific prefix:
 
 In this case, Clojure will be installed to **%USERPROFILE%***\opt\clojure*, e.g. *C:\Users\user\opt\clojure*.
 
-Remember to set **PATH** variable by yourself.
+Remember to set **PATH** variable by yourself. Later, call Clojure with *clojure.bat*.
 
 ### Unix
 
