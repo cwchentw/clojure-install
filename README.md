@@ -29,7 +29,7 @@ Run *clojure-install.bat* without parameter to install Clojure to default locati
 
 Default installation path is **%USERPROFILE%***\clojure*, e.g. *C:\Users\user\clojure*.
 
-Run the script with parameter to install at a specific prefix:
+Run the script with parameter to install Clojure to some specific prefix:
 
 ```
 > clojure-install.bat %USERPROFILE%\opt
