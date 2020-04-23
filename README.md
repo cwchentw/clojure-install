@@ -9,10 +9,11 @@ Wrapper and Utility for Clojure
 * JDK
 * Maven
 * Clojure
+* Git
 
-Our script will download Maven and Clojure automatically. Hence, you don't need to manage dependency issue.
+Our script will download Maven and Clojure automatically. Hence, you don't need to manage dependency issue except JDK itself.
 
-We test our script against OpenJDK.
+We test our scripts against OpenJDK.
 
 ## Usage
 
