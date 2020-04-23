@@ -57,11 +57,6 @@ if not exist %clojure_root%clojure.bat (
 )
 
 rem Download build.bat
-if "%no_powershell%" == "1" (
-    echo No PowerShell on the system >&2
-    exit /B 1
-)
-
 powershell -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/build.bat -OutFile %clojure_root%build.bat"
 
 rem Check whether build.bat exists.
@@ -71,11 +66,6 @@ if not exist %clojure_root%build.bat (
 )
 
 rem Download clean.bat
-if "%no_powershell%" == "1" (
-    echo no PowerShell on the system >&2
-    exit /B 1
-)
-
 powershell -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clean.bat -OutFile %clojure_root%clean.bat"
 
 rem Check whether clean.bat exists.
