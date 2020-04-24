@@ -1,0 +1,110 @@
+#!/bin/sh
+# Clojure Installer for Unix
+# Copyright (c) 2020 Michael Chen
+# Licensed under MIT
+
+
+download () {
+    local target="$1";
+    local uri="$2";
+
+    if [ -z "$target" ];
+    then
+        echo "No valid download target" >&2;
+        exit 1;
+    fi
+
+    if [ -z "$uri" ];
+    then
+        echo "No valid URI" >&2;
+        exit 1;
+    fi
+
+    if command -v wget --version 2>/dev/null 1>&2;
+    then
+        wget -O "$target" "$uri";
+    elif command -v curl --version 2>/dev/null 1>&2;
+    then
+        curl "$uri" --output "$target";
+    else
+        echo "Neither wget nor curl on the system" >&2;
+        exit 1;
+    fi
+}
+
+# Check whether Git is available.
+if ! command -v git --version 2>/dev/null 1>&2;
+then
+    echo "No Git on the system" >&2;
+    exit 1;
+fi
+
+# Get prefix from user input.
+prefix="$1";
+
+# Fallback to default prefix.
+if [ -z "$prefix" ];
+then
+    prefix="$HOME";
+fi
+
+clojure_root="$prefix/clojure";
+
+cwd="$(pwd)";
+
+if [ -d "$clojure_root" ];
+then
+    cd "$clojure_root";
+    # Update a local Clojure repo if it exists.
+    git pull;
+else
+    # Clone a Clojure repo if it doesn't exist.
+    git clone https://github.com/clojure/clojure.git "$clojure_root";
+    cd "$clojure_root";
+fi
+
+# Download clojure script.
+download "$clojure_root/clojure" \
+    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure";
+
+# Check whether clojure script exists.
+if ! [ -f "$clojure_root/clojure" ];
+then
+    echo "Failed to download clojure script" >&2;
+    exit 1;
+fi
+
+chmod +x "$clojure_root/clojure";
+
+# Download build script.
+download "$clojure_root/build" \
+    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/build";
+
+# Check whether build script exists.
+if ! [ -f "$clojure_root/build" ];
+then
+    echo "Failed to download build script" >&2;
+    exit 1;
+fi
+
+chmod +x "$clojure_root/build";
+
+# Download clean script.
+download "$clojure_root/clean" \
+    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clean";
+
+# Check whether clean script exists.
+if ! [ -f "$clojure_root/clean" ];
+then
+    echo "Failed to download clean script" >&2;
+    exit 1;
+fi
+
+chmod +x "$clojure_root/clean";
+
+"$clojure_root/clean";
+"$clojure_root/build";
+
+echo "Remember to add $clojure_root to PATH variable";
+
+cd "$cwd";
