@@ -3,10 +3,10 @@
 # Copyright (c) 2020 Michael Chen.
 # Licensed under MIT
 
-# Place clojure, build and clean at the root path of of a local Clojure repo.
+# Place the script at the scripts/ subdirectory of of a local Clojure repo.
 
-
-root=$(dirname "$0");
+script_path="$(dirname $0)";
+root="${script_path}/..";
 
 rm -rf "$root/clojure.jar" "$root/apache-maven-3.6.3-bin.tar.gz" \
     "$root/apache-maven-3.6.3"

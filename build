@@ -3,7 +3,7 @@
 # Copyright (c) 2020 Michael Chen.
 # Licensed under MIT
 
-# Place clojure, build and clean at the root path of of a local Clojure repo.
+# Place the script at the scripts/ subdirectory of of a local Clojure repo.
 
 
 download () {
@@ -34,7 +34,8 @@ download () {
     fi
 }
 
-root=$(dirname "$0");
+script_path="$(dirname $0)";
+root="${script_path}/..";
 
 download "$root/apache-maven-3.6.3-bin.tar.gz" \
     "http://ftp.mirror.tw/pub/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz";

@@ -3,7 +3,7 @@
 # Copyright (c) 2020 Michael Chen.
 # Licensed under MIT
 
-# Place clojure, build and clean at the root path of of a local Clojure repo.
+# Place the script at the root path of of a local Clojure repo.
 
 
 # Check whether Java is available.
@@ -28,8 +28,8 @@ then
     echo "No compiled Clojure on the system" >&2;
     echo "Compile Clojure from scratch" >&2;
     
-    "$root/clean";
-    "$root/build";
+    "$root/scripts/clean";
+    "$root/scripts/build";
     
     cd "$cwd";
 
