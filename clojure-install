@@ -63,6 +63,8 @@ else
     cd "$clojure_root";
 fi
 
+mkdir "$clojure_root/scripts";
+
 # Download clojure script.
 download "$clojure_root/clojure" \
     "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure";
@@ -77,33 +79,33 @@ fi
 chmod +x "$clojure_root/clojure";
 
 # Download build script.
-download "$clojure_root/build" \
+download "$clojure_root/scripts/build" \
     "https://raw.githubusercontent.com/cwchentw/clojure-install/master/build";
 
 # Check whether build script exists.
-if ! [ -f "$clojure_root/build" ];
+if ! [ -f "$clojure_root/scripts/build" ];
 then
     echo "Failed to download build script" >&2;
     exit 1;
 fi
 
-chmod +x "$clojure_root/build";
+chmod +x "$clojure_root/scripts/build";
 
 # Download clean script.
-download "$clojure_root/clean" \
+download "$clojure_root/scripts/clean" \
     "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clean";
 
 # Check whether clean script exists.
-if ! [ -f "$clojure_root/clean" ];
+if ! [ -f "$clojure_root/scripts/clean" ];
 then
     echo "Failed to download clean script" >&2;
     exit 1;
 fi
 
-chmod +x "$clojure_root/clean";
+chmod +x "$clojure_root/scripts/clean";
 
-"$clojure_root/clean";
-"$clojure_root/build";
+"$clojure_root/scripts/clean";
+"$clojure_root/scripts/build";
 
 echo "Remember to add $clojure_root to PATH variable";
 
