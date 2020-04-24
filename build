@@ -1,0 +1,47 @@
+#!/bin/sh
+# Build script for Clojure on Unix.
+# Copyright (c) 2020 Michael Chen.
+# Licensed under MIT
+
+# Place clojure, build and clean at the root path of of a local Clojure repo.
+
+
+download () {
+    local target="$1";
+    local uri="$2";
+
+    if [ -z "$target" ];
+    then
+        echo "No valid download target" >&2;
+        exit 1;
+    fi
+
+    if [ -z "$uri" ];
+    then
+        echo "No valid URI" >&2;
+        exit 1;
+    fi
+
+    if command -v wget --version 2>/dev/null 1>&2;
+    then
+        wget -O "$target" "$uri";
+    elif command -v curl --version 2>/dev/null 1>&2;
+    then
+        curl "$uri" --output "$target";
+    else
+        echo "Neither wget nor curl on the system" >&2;
+        exit 1;
+    fi
+}
+
+root=$(dirname "$0");
+
+download "$root/apache-maven-3.6.3-bin.tar.gz" \
+    "http://ftp.mirror.tw/pub/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz";
+
+tar -xvf "$root/apache-maven-3.6.3-bin.tar.gz" -C "$root"
+
+mvn="$root/apache-maven-3.6.3/bin/mvn";
+
+cd "$root";
+"$mvn" -Plocal -Dmaven.test.skip=true package

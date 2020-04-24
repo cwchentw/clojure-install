@@ -1,0 +1,40 @@
+#!/bin/sh
+# Wrapper for Clojure on Unix.
+# Copyright (c) 2020 Michael Chen.
+# Licensed under MIT
+
+# Place clojure, build and clean at the root path of of a local Clojure repo.
+
+
+# Check whether Java is available.
+if ! command -v java -version 2>/dev/null 1>&2;
+then
+    echo "No Java on the system" >&2;
+    exit 1;
+fi
+
+cwd="$(pwd)";
+root=$(dirname "$0");
+
+if [ "" = "$CLASSPATH" ];
+then
+    extra_classpath=":.";
+else
+    extra_classpath=":$CLASSPATH:.";
+fi
+
+if ! [ -f "$root/clojure.jar" ];
+then
+    echo "No compiled Clojure on the system" >&2;
+    echo "Compile Clojure from scratch" >&2;
+    
+    "$root/clean";
+    "$root/build";
+    
+    cd "$cwd";
+
+    echo "Restart Clojures" >&2;
+    exit 0;
+fi
+
+java -cp "$root/clojure.jar$extra_classpath" clojure.main "$@";
