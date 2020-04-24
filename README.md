@@ -65,6 +65,8 @@ Remember to set **PATH** variable by yourself. Later, call Clojure with *clojure
 
 Currently, our script fails to compile Clojure with system Maven.
 
+On Windows, `Invoke-WebRequest` cmdlet is only supported on PowerShell 3.0 or above. PowerShell 3.0 is available on Windows 8 or Windows 7 with service pack 1.
+
 ## Copyright
 
 Copyright (c) 2020 Michael Chen. Licnesed under MIT.
