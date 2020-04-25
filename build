@@ -16,10 +16,12 @@ download () {
         exit 1;
     fi
 
+    # "$target" is URI now.
+    # Get real `target` by parse URI.
     if [ -z "$uri" ];
     then
-        echo "No valid URI" >&2;
-        exit 1;
+        uri="$target";
+        target="$(basename $target)";
     fi
 
     if command -v wget --version 2>/dev/null 1>&2;
