@@ -13,6 +13,14 @@ then
     exit 1;
 fi
 
+# Add `rlwrap` support if it is available.
+if command -v rlwrap --version 2>/dev/null 1>&2;
+then
+    wrap=rlwrap
+else
+    wrap=""
+fi
+
 cwd="$(pwd)";
 root=$(dirname "$0");
 
@@ -37,4 +45,12 @@ then
     exit 0;
 fi
 
-java -cp "$root/clojure.jar$extra_classpath" clojure.main "$@";
+arg="$1";
+if [ -z "$arg" ];
+then
+    # Run Clojure in interactive mode with optional `rlwrap` support.
+    "$wrap" java -cp "$root/clojure.jar$extra_classpath" clojure.main "$@";
+else
+    # Run Clojure in batch mode.
+    java -cp "$root/clojure.jar$extra_classpath" clojure.main "$@";
+fi

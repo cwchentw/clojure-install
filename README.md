@@ -8,9 +8,12 @@ Wrapper and Utility for Clojure
 
 * JDK
 * Clojure
-* jline (only for Windows)
+* jline 1.x, only for Windows
+* (Optional) `rlwrap`, only for Unix
 
 Our script will download Clojure and jline automatically. Hence, you don't need to manage dependency issue except JDK itself.
+
+`rlwrap` support is detected and added automatically if it is available on a host.
 
 We test our scripts against OpenJDK.
 
@@ -62,7 +65,11 @@ Remember to set **PATH** variable by yourself. Later, call Clojure with *clojure
 
 ## For Windows Users
 
-As our *clojure.bat* add jline 1.x support to the REPL environment of Clojure, press *Ctrl + d* to quit its interactive mode.
+As our *clojure.bat* script add jline 1.x support to the REPL environment of Clojure, press *Ctrl + d* to quit its interactive mode.
+
+## For Unix Users
+
+Since our *clojure* script add optional `rlwrap` support to the REPL environment of Clojure, press *Ctrl + d* to exit its interactive mode if `rlwrap` is available on the host.
 
 ## Known Issues or Bugs
 
