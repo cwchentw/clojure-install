@@ -39,7 +39,7 @@ Run the script with parameter to install Clojure to some specific prefix:
 
 In this case, Clojure will be installed to **%USERPROFILE%***\opt\clojure*, e.g. *C:\Users\user\opt\clojure*.
 
-Remember to set **PATH** variable by yourself. Later, call Clojure with *clojure.bat*.
+Remember to set **PATH** variable by yourself. Later, call Clojure with *cljrun.bat*.
 
 ### Unix
 
@@ -61,15 +61,19 @@ Run the script with parameter to install Clojure to some specific prefix:
 
 In this case, Clojure will be installed to **$HOME**/opt/clojure, e.g. */home/user/opt/clojure*.
 
-Remember to set **PATH** variable by yourself. Later, call Clojure with *clojure*.
+Remember to set **PATH** variable by yourself. Later, call Clojure with *cljrun*.
+
+## Note
+
+To avoid name collision with official Clojure cli tools, we name our main scripts *cljrun* on Unix and *cljrun.bat* on Windows.
 
 ## For Windows Users
 
-As our *clojure.bat* script add jline 1.x support to the REPL environment of Clojure, press *Ctrl + d* to quit its interactive mode.
+As our *cljrun.bat* script add jline 1.x support to the REPL environment of Clojure, press *Ctrl + d* to quit its interactive mode.
 
 ## For Unix Users
 
-Since our *clojure* script add optional `rlwrap` support to the REPL environment of Clojure, press *Ctrl + d* to exit its interactive mode if `rlwrap` is available on the host.
+Since our *cljrun* script add optional `rlwrap` support to the REPL environment of Clojure, press *Ctrl + d* to exit its interactive mode if `rlwrap` is available on the host.
 
 ## Known Issues or Bugs
 
