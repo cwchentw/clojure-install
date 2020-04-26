@@ -29,26 +29,30 @@ rem Save current working directory.
 set cwd=%CD%
 
 if exist %clojure_root% (
-    cd %clojure_root%
+    cd %clojure_root% || (
+        echo Failed to go to %clojure_root% >&2
+        exit /B 1
+    )
+
     rem Update a local Clojure repo if it exists.
     git pull
 ) else (
     rem Clone a Clojure repo if it doesn't exist.
     git clone https://github.com/clojure/clojure.git %clojure_root%
-    cd %clojure_root%
+
+    cd %clojure_root% || (
+        echo Failed to go to %clojure_root% >&2
+        exit /B 1
+    )
 )
 
 rem Check whether PowerShell is available.
 powershell -Help >nul 2>&1 || (
-    set no_powershell=1
-)
-
-rem Download clojure.bat
-if "%no_powershell%" == "1" (
     echo No PowerShell on the system >&2
     exit /B 1
 )
 
+rem Download clojure.bat
 powershell -Command ^
     "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/cljrun.bat -OutFile %clojure_root%cljrun.bat"
 
@@ -76,7 +80,10 @@ if not exist %clojure_root%clj.bat (
     exit /B 1
 )
 
-mkdir scripts
+mkdir scripts || (
+    echo Failed to create %clojure_root%scripts\ >&2
+    exit /B 1
+)
 
 rem Download build.bat for Clojure
 powershell -Command ^
@@ -104,13 +111,21 @@ call %clojure_root%\scripts\build.bat
 cd %cwd%
 
 if exist %jline_root% (
-    cd %jline_root%
+    cd %jline_root% || (
+        echo Failed to go to %jline_root% >&2
+        exit /B 1
+    )
+
     rem Update a local jline 1.x repo if it exists.
     git pull
 ) else (
     rem Clone a jline 1.x repo if it doesn't exist.
     git clone https://github.com/jline/jline1.git %jline_root%
-    cd %jline_root%
+
+    cd %jline_root% || (
+        echo Failed to go to %jline_root% >&2
+        exit /B 1
+    )
 )
 
 rem Download build.bat for jline 1.x
@@ -135,9 +150,15 @@ if not exist %jline_root%clean.bat (
 call %jline_root%\clean.bat
 call %jline_root%\build.bat
 
-copy %jline_root%\target\jline-1.1-SNAPSHOT.jar %clojure_root%
+copy %jline_root%\target\jline-1.1-SNAPSHOT.jar %clojure_root% || (
+    echo Failed to copy %jline_root%\target\jline-1.1-SNAPSHOT.jar to %clojure_root% >&2
+    exit /B 1
+)
 
-cd %cwd%
+cd %cwd% || (
+    echo Failed to go to %cwd% >&2
+    exit /B 1
+)
 
 rmdir /s /q %jline_root%
 
