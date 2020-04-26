@@ -3,7 +3,7 @@ rem Wrapper for Clojure on Windows
 rem Copyright (c) 2020 Michael Chen
 rem Licensed under MIT
 
-rem Place clojure.bat, build.bat and clean.bat at the root path of a local Clojure repo.
+rem Place clojure.bat at the root path of a local Clojure repo.
 
 rem Check whether Java is available.
 java -version 1>nul 2>&1 || (
@@ -27,8 +27,8 @@ if not exist %rootdir%clojure.jar (
     echo No compiled Clojure on the system >&2
     echo Compile Clojure from scratch >&2
 
-    call %rootdir%clean.bat
-    call %rootdir%build.bat
+    call %rootdir%scripts\clean.bat
+    call %rootdir%scripts\build.bat
     cd %cwd%
 
     echo Restart Clojure >&2

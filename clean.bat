@@ -3,9 +3,10 @@ rem Clean script for Clojure on Windows
 rem Copyright (c) 2020 Michael Chen
 rem Licensed under MIT
 
-rem Place clojure.bat, build.bat and clean.bat at the root path of a local Clojure repo.
+rem Place the script at the scripts/ subdirectory of of a local Clojure repo.
 
-set rootdir=%~dp0
+set script_path=%~dp0
+set rootdir=%script_path%..\
 
 if exist %rootdir%clojure.jar del /S %rootdir%clojure.jar
 if exist %rootdir%apache-maven-3.6.3-bin.zip del /S %rootdir%apache-maven-3.6.3-bin.zip
