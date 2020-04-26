@@ -7,10 +7,10 @@ Wrapper and Utility for Clojure
 ## System Requirements
 
 * JDK
-* Maven
 * Clojure
+* jline (only for Windows)
 
-Our script will download Maven and Clojure automatically. Hence, you don't need to manage dependency issue except JDK itself.
+Our script will download Clojure and jline automatically. Hence, you don't need to manage dependency issue except JDK itself.
 
 We test our scripts against OpenJDK.
 
