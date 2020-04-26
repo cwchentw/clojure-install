@@ -9,5 +9,6 @@ set script_path=%~dp0
 set rootdir=%script_path%..\
 
 if exist %rootdir%clojure.jar del /S %rootdir%clojure.jar
+if exist %rootdir%jline-1.1-SNAPSHOT.jar del /S %rootdir%jline-1.1-SNAPSHOT.jar
 if exist %rootdir%apache-maven-3.6.3-bin.zip del /S %rootdir%apache-maven-3.6.3-bin.zip
 if exist %rootdir%apache-maven-3.6.3 rmdir /S /Q %rootdir%apache-maven-3.6.3
