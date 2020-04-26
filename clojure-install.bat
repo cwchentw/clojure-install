@@ -23,6 +23,7 @@ if "%prefix:~-1%" neq "\" (
 )
 
 set clojure_root=%prefix%clojure\
+set jline_root=%prefix%jline1\
 
 rem Save current working directory.
 set cwd=%CD%
@@ -59,29 +60,67 @@ if not exist %clojure_root%clojure.bat (
 
 mkdir scripts
 
-rem Download build.bat
+rem Download build.bat for Clojure
 powershell -Command ^
     "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/build.bat -OutFile %clojure_root%\scripts\build.bat"
 
 rem Check whether build.bat exists.
 if not exist %clojure_root%\scripts\build.bat (
-    echo Failed to download build.bat >&2
+    echo Failed to download build.bat for Clojure >&2
     exit /B 1
 )
 
-rem Download clean.bat
+rem Download clean.bat for Clojure
 powershell -Command ^
     "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/clean.bat -OutFile %clojure_root%\scripts\clean.bat"
 
 rem Check whether clean.bat exists.
 if not exist %clojure_root%scripts\clean.bat (
-    echo Failed to download clean.bat >&2
+    echo Failed to download clean.bat for Clojure >&2
     exit /B 1
 )
 
 call %clojure_root%\scripts\clean.bat
 call %clojure_root%\scripts\build.bat
 
-echo Remember to add %clojure_root% to PATH variable
+cd %cwd%
+
+if exist %jline_root% (
+    cd %jline_root%
+    rem Update a local jline 1.x repo if it exists.
+    git pull
+) else (
+    rem Clone a jline 1.x repo if it doesn't exist.
+    git clone https://github.com/jline/jline1.git %jline_root%
+    cd %jline_root%
+)
+
+rem Download build.bat for jline 1.x
+powershell -Command ^
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/jline1/build.bat -OutFile %jline_root%\build.bat"
+
+if not exist %jline_root%build.bat (
+    echo Failed to download build.bat for jline 1.x >&2
+    exit /B 1
+)
+
+rem Download clean.bat for jline 1.x
+powershell -Command ^
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/jline1/clean.bat -OutFile %jline_root%\clean.bat"
+
+rem Check whether clean.bat exists.
+if not exist %jline_root%clean.bat (
+    echo Failed to download clean.bat for jline 1.x >&2
+    exit /B 1
+)
+
+call %jline_root%\clean.bat
+call %jline_root%\build.bat
+
+copy %jline_root%\target\jline-1.1-SNAPSHOT.jar %clojure_root%
 
 cd %cwd%
+
+rmdir /s /q %jline_root%
+
+echo Remember to add %clojure_root% to PATH variable

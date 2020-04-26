@@ -35,5 +35,11 @@ if not exist %rootdir%clojure.jar (
     exit /B 0
 )
 
-rem Run Clojure
-java -cp %rootdir%clojure.jar%extra_classpath% clojure.main %*
+set arg=%1
+if "x%arg%" == "x" (
+    rem Run Clojure along with jline 1.x in interactive mode.
+    java -cp %rootdir%clojure.jar;%rootdir%jline-1.1-SNAPSHOT.jar%extra_classpath% jline.ConsoleRunner clojure.main
+) else (
+    rem Run Clojure alone in batch mode.
+    java -cp %rootdir%clojure.jar%extra_classpath% clojure.main %*
+)
