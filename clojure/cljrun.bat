@@ -5,15 +5,6 @@ rem Licensed under MIT
 
 rem Place clojure.bat at the root path of a local Clojure repo.
 
-rem Run offical Clojure cli tool if it is available.
-powershell -Command "Get-Command -Name Invoke-Clojure -ErrorAction SilentlyContinue"
-if "%ERRORLEVEL%" == "0" (
-    rem Check whether command-line arguments works or not later.
-    powershell -Command "Invoke-Clojure" "%*"
-    exit /B %ERROELEVEL%
-)
-
-rem Offical Clojure cli tool is not available. Run custom-made script.
 rem Check whether Java is available.
 java -version 1>nul 2>&1 || (
     echo No Java on the system >&2
