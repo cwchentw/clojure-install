@@ -60,6 +60,10 @@ In this case, Clojure will be installed to **$HOME**/opt/clojure, e.g. */home/us
 
 Remember to set **PATH** variable by yourself. Later, call Clojure with *clojure*.
 
+## For Windows Users
+
+As our *clojure.bat* add jline 1.x support to the REPL environment of Clojure, press *Ctrl + d* to quit its interactive mode.
+
 ## Known Issues or Bugs
 
 Currently, our script fails to compile Clojure with system Maven.
