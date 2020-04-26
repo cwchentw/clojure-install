@@ -48,7 +48,8 @@ if "%no_powershell%" == "1" (
     exit /B 1
 )
 
-powershell -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure.bat -OutFile %clojure_root%clojure.bat"
+powershell -Command ^
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/clojure.bat -OutFile %clojure_root%clojure.bat"
 
 rem Check whether clojure.bat exists.
 if not exist %clojure_root%clojure.bat (
@@ -59,7 +60,8 @@ if not exist %clojure_root%clojure.bat (
 mkdir scripts
 
 rem Download build.bat
-powershell -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/build.bat -OutFile %clojure_root%\scripts\build.bat"
+powershell -Command ^
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/build.bat -OutFile %clojure_root%\scripts\build.bat"
 
 rem Check whether build.bat exists.
 if not exist %clojure_root%\scripts\build.bat (
@@ -68,7 +70,8 @@ if not exist %clojure_root%\scripts\build.bat (
 )
 
 rem Download clean.bat
-powershell -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clean.bat -OutFile %clojure_root%\scripts\clean.bat"
+powershell -Command ^
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/clean.bat -OutFile %clojure_root%\scripts\clean.bat"
 
 rem Check whether clean.bat exists.
 if not exist %clojure_root%scripts\clean.bat (

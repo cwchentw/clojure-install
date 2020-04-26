@@ -67,7 +67,7 @@ mkdir "$clojure_root/scripts";
 
 # Download clojure script.
 download "$clojure_root/clojure" \
-    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure";
+    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/clojure";
 
 # Check whether clojure script exists.
 if ! [ -f "$clojure_root/clojure" ];
@@ -80,7 +80,7 @@ chmod +x "$clojure_root/clojure";
 
 # Download build script.
 download "$clojure_root/scripts/build" \
-    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/build";
+    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/build";
 
 # Check whether build script exists.
 if ! [ -f "$clojure_root/scripts/build" ];
@@ -93,7 +93,7 @@ chmod +x "$clojure_root/scripts/build";
 
 # Download clean script.
 download "$clojure_root/scripts/clean" \
-    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clean";
+    "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/clean";
 
 # Check whether clean script exists.
 if ! [ -f "$clojure_root/scripts/clean" ];
