@@ -50,10 +50,10 @@ if "%no_powershell%" == "1" (
 )
 
 powershell -Command ^
-    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/cljrun.bat -OutFile %clojure_root%clojure.bat"
+    "Invoke-WebRequest -Uri https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/cljrun.bat -OutFile %clojure_root%cljrun.bat"
 
 rem Check whether clojure.bat exists.
-if not exist %clojure_root%clojure.bat (
+if not exist %clojure_root%cljrun.bat (
     echo Failed to download clojure.bat >&2
     exit /B 1
 )

@@ -66,11 +66,11 @@ fi
 mkdir "$clojure_root/scripts";
 
 # Download clojure script.
-download "$clojure_root/clojure" \
+download "$clojure_root/cljrun" \
     "https://raw.githubusercontent.com/cwchentw/clojure-install/master/clojure/cljrun";
 
 # Check whether clojure script exists.
-if ! [ -f "$clojure_root/clojure" ];
+if ! [ -f "$clojure_root/cljrun" ];
 then
     echo "Failed to download clojure script" >&2;
     exit 1;
