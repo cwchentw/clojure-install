@@ -15,6 +15,13 @@ powershell -Help 1>nul 2>&1 || (
     exit /B 1
 )
 
+powershell -Command "Get-Command -Name Invoke-WebRequest -ErrorAction SilentlyContinue" 1>nul 2>&1
+
+if not "%ERRORLEVEL%" == "0" (
+    echo Invoke-WebRequest cmdlet is not supported on the system >&2
+    exit /B 1
+)
+
 rem Download Maven.
 powershell -Command "Invoke-WebRequest -Uri https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -OutFile %rootdir%apache-maven-3.6.3-bin.zip"
 
