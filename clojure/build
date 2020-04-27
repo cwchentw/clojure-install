@@ -42,9 +42,25 @@ root="${script_path}/..";
 download "$root/apache-maven-3.6.3-bin.tar.gz" \
     "http://ftp.mirror.tw/pub/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz";
 
+if ! [ -f "$root/apache-maven-3.6.3-bin.tar.gz" ];
+then
+    echo "Failed to download Maven to $root/apache-maven-3.6.3-bin.tar.gz" >&2;
+    exit 1;
+fi
+
 tar -xvf "$root/apache-maven-3.6.3-bin.tar.gz" -C "$root"
+
+if ! [ -d "$root/apache-maven-3.6.3" ];
+then
+    echo "Failed to extract Maven to $root/apache-maven-3.6.3" >&2;
+    exit 1;
+fi
 
 mvn="$root/apache-maven-3.6.3/bin/mvn";
 
-cd "$root";
+cd "$root" || (
+    echo "Failed to go to $root" >&2;
+    exit 1;
+);
+
 "$mvn" -Plocal -Dmaven.test.skip=true package
