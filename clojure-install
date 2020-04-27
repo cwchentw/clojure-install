@@ -54,16 +54,27 @@ cwd="$(pwd)";
 
 if [ -d "$clojure_root" ];
 then
-    cd "$clojure_root";
+    cd "$clojure_root" || (
+        echo "Failed to go to $clojure_root" >&2;
+        exit 1;
+    );
+
     # Update a local Clojure repo if it exists.
     git pull;
 else
     # Clone a Clojure repo if it doesn't exist.
     git clone https://github.com/clojure/clojure.git "$clojure_root";
-    cd "$clojure_root";
+
+    cd "$clojure_root" || (
+        echo "Failed to go to $clojure_root" >&2;
+        exit 1;
+    );
 fi
 
-mkdir "$clojure_root/scripts";
+mkdir "$clojure_root/scripts" || (
+    echo "Failed to create $clojure_root/scripts" >&2;
+    exit 1;
+);
 
 # Download clojure script.
 download "$clojure_root/cljrun" \
@@ -76,7 +87,7 @@ then
     exit 1;
 fi
 
-chmod +x "$clojure_root/clojure";
+chmod +x "$clojure_root/cljrun";
 
 # Download build script.
 download "$clojure_root/scripts/build" \
