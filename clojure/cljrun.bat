@@ -3,7 +3,7 @@ rem Wrapper for Clojure on Windows
 rem Copyright (c) 2020 Michael Chen
 rem Licensed under MIT
 
-rem Place clojure.bat at the root path of a local Clojure repo.
+rem Place cljrun.bat at the root path of a local Clojure repo.
 
 rem Check whether Java is available.
 java -version 1>nul 2>&1 || (
