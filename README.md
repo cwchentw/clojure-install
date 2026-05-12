@@ -4,12 +4,15 @@
 
 Wrapper and Utility for Clojure
 
-## Project Status
+## 🛑 Project Status: Deprecated & Retired
 
-This project is currently in a maintenance-light state.
-It continues to be available as-is for reference and use, though some parts of the implementation may not account for all environments or configurations.
+This project is now **officially archived and no longer maintained**. 
 
-It has served its original purpose well, but users are encouraged to adapt it to their own needs as necessary.
+It served its original purpose well by providing a lightweight wrapper to fill the gaps in the early Clojure ecosystem (such as bootstrapping the REPL environment and managing basic dependency paths automatically on Windows and Unix).
+
+With the maturation of the Clojure ecosystem, we highly recommend that users transition to modern, native tools. Specifically, you should check out **[Babashka](https://babashka.org)**—a fast, native Clojure scripting environment that provides instant startup times, deep tool integration, and full cross-platform support without the need for manual heuristic wrappers.
+
+Thank you to everyone who used and supported this project!
 
 ## System Requirements
 
